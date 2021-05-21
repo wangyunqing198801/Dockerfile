@@ -17,9 +17,9 @@ function nianyuguai(){
     for jsname in $(ls /longzhuzhu/qx | grep -oE ".*\js$"); do cp -rf /longzhuzhu/qx/$jsname /scripts/longzhuzhu_$jsname; done
 }
 
-function jddj(){
+function JDDJ(){
     # https://github.com/passerby-b/JDDJ.git
-    rm -rf /jddj /scripts/jddj_*
+    rm -rf /JDDJ /scripts/JDDJ_*
     git clone -b main https://github.com/passerby-b/JDDJ.git /jddj
     for jsname in $(ls /JDDJ | grep -oE ".*\js$"); do cp -rf /JDDJ/$jsname /scripts/JDDJ_$jsname; done
 }
@@ -31,6 +31,14 @@ function didi_fruit(){
     for jsname in $(ls /didi_fruit | grep -oE ".*\js$"); do cp -rf /didi_fruit/$jsname /scripts/didi_fruit_$jsname; done
 }
 
+function diycron(){
+    # monkcoder nianyuguai jddj didi_fruit定时任务
+    for jsname in /scripts/monkcoder_*.js /scripts/longzhuzhu_*.js /scripts/JDDJ_*.js /scripts/didi_fruit_*.js; do
+        jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
+        test -z "$jsnamecron" || echo "$jsnamecron node $jsname >> /scripts/logs/$(echo $jsname | cut -d/ -f3).log 2>&1" >> /scripts/docker/merged_list_file.sh
+    done
+}
+
 function main(){
     # 首次运行时拷贝docker目录下文件
     [[ ! -d /jd_sku ]] && mkdir /jd_sku && cp -rf /scripts/docker/* /jd_sku
@@ -39,7 +47,7 @@ function main(){
     a_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
     monkcoder
     nianyuguai
-    jddj
+    JDDJ
     didi_fruit        
     b_jsnum=$(ls -l /scripts | grep -oE "^-.*js$" | wc -l)
     b_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
