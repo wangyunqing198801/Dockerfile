@@ -19,9 +19,9 @@ function nianyuguai(){
 
 function JDDJ(){
     # https://github.com/passerby-b/JDDJ.git
-    rm -rf /JDDJ /scripts/JDDJ_*
+    rm -rf /JDDJ /scripts/*
     git clone -b main https://github.com/passerby-b/JDDJ.git /JDDJ
-    for jsname in $(ls /JDDJ | grep -oE ".*\js$"); do cp -rf /JDDJ/$jsname /scripts/JDDJ_$jsname; done
+    for jsname in $(ls /JDDJ | grep -oE ".*\js$"); do cp -rf /JDDJ/$jsname /scripts/jddj_$jsname; done
 }
 
 function didi_fruit(){
@@ -33,7 +33,7 @@ function didi_fruit(){
 
 function diycron(){
     # monkcoder nianyuguai jddj didi_fruit定时任务
-    for jsname in /scripts/monkcoder_*.js /scripts/longzhuzhu_*.js /scripts/JDDJ_*.js /scripts/didi_fruit_*.js; do
+    for jsname in /scripts/monkcoder_*.js /scripts/longzhuzhu_*.js /scripts/jddj_*.js /scripts/didi_fruit_*.js; do
         jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
         test -z "$jsnamecron" || echo "$jsnamecron node $jsname >> /scripts/logs/$(echo $jsname | cut -d/ -f3).log 2>&1" >> /scripts/docker/merged_list_file.sh
     done
