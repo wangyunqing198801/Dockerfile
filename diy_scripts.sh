@@ -32,11 +32,14 @@ function didi_fruit(){
 }
 
 function diycron(){
-    # monkcoder nianyuguai jddj didi_fruit定时任务
-    for jsname in /scripts/monkcoder_*.js /scripts/longzhuzhu_*.js /scripts/jddj_*.js /scripts/didi_fruit_*.js; do
+    # monkcoder jddj didi_fruit定时任务
+    for jsname in /scripts/monkcoder_*.js /scripts/jddj_*.js /scripts/didi_fruit_*.js; do
         jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
         test -z "$jsnamecron" || echo "$jsnamecron node $jsname >> /scripts/logs/$(echo $jsname | cut -d/ -f3).log 2>&1" >> /scripts/docker/merged_list_file.sh
     done
+    # 设置京豆雨cron
+    echo "0 * * * * node /scripts/longzhuzhu_jd_super_redrain.js >> /scripts/logs/longzhuzhu_jd_super_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "30 16-23/1 * * * node /scripts/longzhuzhu_jd_half_redrain.js >> /scripts/logs/longzhuzhu_jd_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 
 function main(){
