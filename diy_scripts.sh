@@ -20,7 +20,7 @@ function nianyuguai(){
 function JDDJ(){
     # https://github.com/passerby-b/JDDJ.git
     rm -rf /JDDJ /scripts/JDDJ_*
-    git clone -b main https://github.com/passerby-b/JDDJ.git /jddj
+    git clone -b main https://github.com/passerby-b/JDDJ.git /JDDJ
     for jsname in $(ls /JDDJ | grep -oE ".*\js$"); do cp -rf /JDDJ/$jsname /scripts/JDDJ_$jsname; done
 }
 
