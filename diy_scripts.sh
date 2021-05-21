@@ -21,7 +21,7 @@ function JDDJ(){
     # https://github.com/passerby-b/JDDJ.git
     rm -rf /JDDJ /scripts/jddj_*
     git clone -b main https://github.com/passerby-b/JDDJ.git /JDDJ
-    for jsname in $(ls /JDDJ | grep -oE ".*\js$"); do cp -rf /JDDJ/$jsname /scripts/jddj_$jsname; done
+    for jsname in $(ls /JDDJ | grep -oE ".*\js$"); do cp -rf /JDDJ/$jsname /scripts/$jsname; done
 }
 
 function didi_fruit(){
