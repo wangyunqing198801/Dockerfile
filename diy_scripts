@@ -17,6 +17,20 @@ function nianyuguai(){
     for jsname in $(ls /longzhuzhu/qx | grep -oE ".*\js$"); do cp -rf /longzhuzhu/qx/$jsname /scripts/longzhuzhu_$jsname; done
 }
 
+function jddj(){
+    # https://github.com/passerby-b/JDDJ.git
+    rm -rf /jddj /scripts/jddj_*
+    git clone -b main https://github.com/passerby-b/JDDJ.git /jddj
+    for jsname in $(ls /JDDJ | grep -oE ".*\js$"); do cp -rf /JDDJ/$jsname /scripts/JDDJ_$jsname; done
+}
+
+function didi_fruit(){
+    # https://github.com/passerby-b/didi_fruit.git
+    rm -rf /didi_fruit /scripts/didi_fruit_*
+    git clone -b main https://github.com/passerby-b/didi_fruit.git /didi_fruit
+    for jsname in $(ls /didi_fruit | grep -oE ".*\js$"); do cp -rf /didi_fruit/$jsname /scripts/didi_fruit_$jsname; done
+}
+
 function main(){
     # 首次运行时拷贝docker目录下文件
     [[ ! -d /jd_sku ]] && mkdir /jd_sku && cp -rf /scripts/docker/* /jd_sku
@@ -24,9 +38,9 @@ function main(){
     a_jsnum=$(ls -l /scripts | grep -oE "^-.*js$" | wc -l)
     a_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
     monkcoder
-    whyour
     nianyuguai
-    zcy01
+    jddj
+    didi_fruit        
     b_jsnum=$(ls -l /scripts | grep -oE "^-.*js$" | wc -l)
     b_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
     # DIY任务
