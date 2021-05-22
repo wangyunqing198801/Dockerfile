@@ -31,6 +31,13 @@ function didi_fruit(){
     for jsname in $(ls /didi_fruit | grep -oE ".*\js$"); do cp -rf /didi_fruit/$jsname /scripts/didi_fruit_$jsname; done
 }
 
+function utter(){
+    # https://github.com/utterliar1/Dockerfile.git
+    rm -rf /utterliar /scripts/utterliar_*
+    git clone -b main https://github.com/utterliar1/Dockerfile.git /utterliar
+    for jsname in $(ls /utterliar | grep -oE ".*\js$"); do cp -rf /utterliar/$jsname /scripts/utterliar_$jsname; done
+}
+
 function diycron(){
     # monkcoder jddj didi_fruit定时任务
     for jsname in /scripts/monkcoder_*.js /scripts/jddj_*.js /scripts/didi_fruit_*.js; do
