@@ -31,7 +31,7 @@ function didi_fruit(){
     for jsname in $(ls /didi_fruit | grep -oE ".*\js$"); do cp -rf /didi_fruit/$jsname /scripts/didi_fruit_$jsname; done
 }
 
-function utter(){
+function utterliar(){
     # https://github.com/utterliar1/Dockerfile.git
     rm -rf /utterliar /scripts/utterliar_*
     git clone -b main https://github.com/utterliar1/Dockerfile.git /utterliar
@@ -57,8 +57,9 @@ function main(){
     a_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
     monkcoder
     nianyuguai
-    JDDJ
-    didi_fruit        
+    jddj
+    didi_fruit
+    utterliar        
     b_jsnum=$(ls -l /scripts | grep -oE "^-.*js$" | wc -l)
     b_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
     # DIY任务
