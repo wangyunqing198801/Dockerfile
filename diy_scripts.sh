@@ -13,7 +13,7 @@ function monkcoder(){
 function nianyuguai(){
     # https://github.com/nianyuguai/longzhuzhu.git
     rm -rf /longzhuzhu /scripts/longzhuzhu_*
-    git clone -b main https://github.com/nianyuguai/longzhuzhu.git /longzhuzhu
+    git clone -b main https://github.com/nianyuguai/longzhuzhu.git /longzhuzhu/qx
     for jsname in $(ls /longzhuzhu/qx | grep -oE ".*\js$"); do cp -rf /longzhuzhu/qx/$jsname /scripts/longzhuzhu_$jsname; done
 }
 
