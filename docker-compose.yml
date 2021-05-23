@@ -1,0 +1,31 @@
+jd_scripts:
+  image: lxk0301/jd_scripts
+  # deploy:
+  #   resources:
+  #     limits:
+  #       cpus: '0.2'
+  #       memory: 200M
+  container_name: jd_scripts
+  restart: unless-stopped
+  volumes:
+    - ./my_crontab_list.sh:/scripts/docker/my_crontab_list.sh
+    - ./logs:/scripts/logs
+    #- ./monkcoder:/monkcoder
+  tty: true
+  environment:
+    - REPO_URL=git@gitee.com:lxk0301/jd_scripts.git
+    - JD_COOKIE=pt_key=AAJgj1zHADBd9ziC_57zdK-07evZqfiM3YC0r-eibzy8qcrYV26ZUZZsHskTmGKhCy3E4AaUdww;pt_pin=jd_574de40428d15;&pt_key=AAJgj1yKADBxiITJ7PWzAEXkpHLt2cfdu1UL_bSppwO_bLD7OeYQzAh4iU5mFHLxh7GdzwxVgy8;pt_pin=jd_78cbcf376bc58;
+    - JDDJ_COOKIE=deviceid_pdj_jd=H5_DEV_43370DC4-ADC5-407E-9568-B7F968E80EFA;o2o_m_h5_sid=6da9f17e-bbbc-4050-a5b9-a304a60cdbcf;,deviceid_pdj_jd=H5_DEV_7776444E-76AA-4E54-A180-4768A99E10BF;o2o_m_h5_sid=0e805b9a-0b9b-4b69-bba2-36d182a22a8a;
+    - DD_TOKEN=jKgvGbjNPiw2ZZcyIEOYvTkXamT_st2oXogQf8-zWFgkzEsKw0AMA9C7aG2CNc7YM75NP-lnM4WWrkLvXpKshIR4K4YiYZNOCsEgkoJRkFRVFQxDMmovoTrTw7ZtRtJLWGfde0UCgtMRZ2RpJZxhar2oV8EVSRMsyBWf1_d9WZD6E9w2id1Zd-mOBKO1xuLOgOBxmM_t_g8AAP__
+    - TG_BOT_TOKEN=1758664698:AAG5Po_PbXQClyWbu0xHVRos_2ijl29nR-s
+    - TG_USER_ID=937190623
+    - JOY_FEED_COUNT=80
+    - JD_JOY_REWARD_NAME=20
+    - MARKET_COIN_TO_BEANS=20
+    - CRZAY_JOY_COIN_ENABLE=N
+    - PASTURE_EXCHANGE_KEYWORD=奶卡
+    - ENABLE_AUTO_HELP=true
+    - DO_NOT_RUN_SCRIPTS=jd_crazy_joy_bonus&jd_live_redrain&jd_joy_reward&jd_blueCoin& jd_jxnc
+    - CUSTOM_LIST_FILE=my_crontab_list.sh
+    #- CUSTOM_LIST_MERGE_TYPE=overwrite
+    - CUSTOM_SHELL_FILE=https://raw.githubusercontent.com/utterliar1/Dockerfile/main/diy_scripts.sh
