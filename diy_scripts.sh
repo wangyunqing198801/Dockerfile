@@ -17,11 +17,11 @@ function nianyuguai(){
     for jsname in $(ls /longzhuzhu/qx | grep -oE ".*\js$"); do cp -rf /longzhuzhu/qx/$jsname /scripts/longzhuzhu_$jsname; done
 }
 
-function JDDJ(){
+function jddj(){
     # https://github.com/passerby-b/JDDJ.git
-    rm -rf /JDDJ /scripts/jddj_*
-    git clone -b main https://github.com/passerby-b/JDDJ.git /JDDJ
-    for jsname in $(ls /JDDJ | grep -oE ".*\js$"); do cp -rf /JDDJ/$jsname /scripts/$jsname; done
+    rm -rf /jddj /scripts/jddj_*
+    git clone -b main https://github.com/passerby-b/JDDJ.git /jddj
+    for jsname in $(ls /jddj | grep -oE ".*\js$"); do cp -rf /jddj/$jsname /scripts/$jsname; done
 }
 
 function didi_fruit(){
