@@ -57,7 +57,7 @@ function main(){
     a_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
     monkcoder
     nianyuguai
-    JDDJ
+    jddj
     didi_fruit
     utterliar        
     b_jsnum=$(ls -l /scripts | grep -oE "^-.*js$" | wc -l)
