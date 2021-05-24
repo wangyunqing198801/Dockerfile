@@ -25,7 +25,7 @@ jd_scripts:
     - CRZAY_JOY_COIN_ENABLE=N
     - PASTURE_EXCHANGE_KEYWORD=奶卡
     - ENABLE_AUTO_HELP=true
-    - DO_NOT_RUN_SCRIPTS=jd_crazy_joy_bonus&jd_live_redrain&jd_joy_reward&jd_blueCoin& jd_jxnc
+    - DO_NOT_RUN_SCRIPTS=jd_crazy_joy_bonus&jd_live_redrain&jd_joy_reward&jd_blueCoin&jd_jxnc
     - CUSTOM_LIST_FILE=my_crontab_list.sh
     #- CUSTOM_LIST_MERGE_TYPE=overwrite
     - CUSTOM_SHELL_FILE=https://raw.githubusercontent.com/utterliar1/Dockerfile/main/diy_scripts.sh
