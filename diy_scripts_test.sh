@@ -7,7 +7,7 @@ function monkcoder(){
     # https://github.com/monk-coder/dust
     rm -rf /monkcoder /scripts/monkcoder_*
     git clone https://github.com/monk-coder/dust.git /monkcoder
-    for jsname in $(find /monkcoder -name "*.js" | grep -vE "\/backup\/|z_health_energy.js|z_mother_jump.js|z_xmf.js|z_health_community.js|monk_shop_follow_sku.js|monk_shop_add_to_car.js"); do cp ${jsname} /scripts/monkcoder_${jsname##*/}; done
+    for jsname in $(find /monkcoder -name "*.js" | grep -vE "\/backup\/|z_health_energy.js|z_city_cash.js|z_carnivalcity.js|z_mother_jump.js|z_xmf.js|z_health_community.js|monk_shop_follow_sku.js|monk_shop_add_to_car.js"); do cp ${jsname} /scripts/monkcoder_${jsname##*/}; done
 }
 
 function nianyuguai(){
@@ -17,11 +17,11 @@ function nianyuguai(){
     for jsname in $(ls /longzhuzhu/qx | grep -oE ".*\js$"); do cp -rf /longzhuzhu/qx/$jsname /scripts/longzhuzhu_$jsname; done
 }
 
-function JDDJ(){
+function jddj(){
     # https://github.com/passerby-b/JDDJ.git
-    rm -rf /JDDJ /scripts/jddj_*
-    git clone -b main https://github.com/passerby-b/JDDJ.git /JDDJ
-    for jsname in $(ls /JDDJ | grep -oE ".*\js$"); do cp -rf /JDDJ/$jsname /scripts/$jsname; done
+    rm -rf /jddj /scripts/jddj_*
+    git clone -b main https://github.com/passerby-b/JDDJ.git /jddj
+    for jsname in $(ls /jddj | grep -oE ".*\js$"); do cp -rf /jddj/$jsname /scripts/$jsname; done
 }
 
 function didi_fruit(){
@@ -29,6 +29,13 @@ function didi_fruit(){
     rm -rf /didi_fruit /scripts/didi_fruit_*
     git clone -b main https://github.com/passerby-b/didi_fruit.git /didi_fruit
     for jsname in $(ls /didi_fruit | grep -oE ".*\js$"); do cp -rf /didi_fruit/$jsname /scripts/didi_fruit_$jsname; done
+}
+
+function utterliar(){
+    # https://github.com/utterliar1/Dockerfile.git
+    rm -rf /utterliar /scripts/utterliar_*
+    git clone -b main https://github.com/utterliar1/Dockerfile.git /utterliar
+    for jsname in $(ls /utterliar | grep -oE ".*\js$"); do cp -rf /utterliar/$jsname /scripts/utterliar_$jsname; done
 }
 
 function diycron(){
@@ -50,8 +57,9 @@ function main(){
     a_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
     monkcoder
     nianyuguai
-    JDDJ
-    didi_fruit        
+    jddj
+    didi_fruit
+    utterliar        
     b_jsnum=$(ls -l /scripts | grep -oE "^-.*js$" | wc -l)
     b_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
     # DIY任务
