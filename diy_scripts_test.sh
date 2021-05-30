@@ -12,6 +12,7 @@ fi
 if [ ! -f "/root/.ssh/config" ]; then
     echo "未检查到仓库密钥配置，复制密钥配置"
     cp /scripts/logs/.ssh/config /root/.ssh/config
+    chmod 600 /root/.ssh/config
 fi
 
 function monkcoder(){
