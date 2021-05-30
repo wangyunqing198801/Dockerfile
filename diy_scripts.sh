@@ -6,7 +6,7 @@
 function monkcoder(){
     # https://github.com/monk-coder/dust
     rm -rf /monkcoder /scripts/monkcoder_*
-    git clone https://github.com/monk-coder/dust.git /monkcoder
+    git clone https://github.com/utterliar1/monkcoer.git /monkcoder
     for jsname in $(find /monkcoder -name "*.js" | grep -vE "\/backup\/|adolf_pk.js|adolf_star.js|z_health_energy.js|z_city_cash.js|z_carnivalcity.js|z_mother_jump.js|z_xmf.js|z_health_community.js|monk_shop_follow_sku.js|monk_shop_add_to_car.js"); do cp ${jsname} /scripts/monkcoder_${jsname##*/}; done
 }
 
