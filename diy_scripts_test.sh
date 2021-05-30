@@ -7,7 +7,6 @@ if [ ! -f "/root/.ssh/utterliar1" ]; then
     echo "未检查到仓库密钥，复制密钥2"
     cp /scripts/logs/.ssh/utterliar1 /root/.ssh/utterliar1
     chmod 600 /root/.ssh/utterliar1
-    ssh-keyscan github.com > /root/.ssh/known_hosts
 fi
 
 function monkcoder(){
