@@ -3,14 +3,14 @@
 ### CUSTOM_SHELL_FILE for https://gitee.com/lxk0301/jd_docker/tree/master/docker
 #### DIY脚本仅供参考,由于更新可能引入未知BUG,建议Fork后使用自己项目的raw地址
 
-if [ ! -f "/root/.ssh/jd_scripts" ]; then
+if [ ! -f "/root/.ssh/id_rsa" ]; then
     echo "未检查到仓库密钥，复制密钥1"
-    cp /scripts/logs/.ssh/jd_scripts /root/.ssh/jd_scripts
-    chmod 600 /root/.ssh/jd_scripts
+    cp /scripts/logs/id_rsa /root/.ssh/id_rsa
+    chmod 600 /root/.ssh/id_rsa
     ssh-keyscan github.com > /root/.ssh/known_hosts
 fi
 
-if [ ! -f "/root/.ssh/jd_scripts" ]; then
+if [ ! -f "/root/.ssh/utterliar1" ]; then
     echo "未检查到仓库密钥，复制密钥2"
     cp /scripts/logs/.ssh/utterliar1 /root/.ssh/utterliar1
     chmod 600 /root/.ssh/utterliar1
