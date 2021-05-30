@@ -3,11 +3,29 @@
 ### CUSTOM_SHELL_FILE for https://gitee.com/lxk0301/jd_docker/tree/master/docker
 #### DIY脚本仅供参考,由于更新可能引入未知BUG,建议Fork后使用自己项目的raw地址
 
+if [ ! -f "/root/.ssh/jd_scripts" ]; then
+    echo "未检查到仓库密钥，复制密钥1"
+    cp /scripts/logs/.ssh/jd_scripts /root/.ssh/jd_scripts
+    chmod 600 /root/.ssh/jd_scripts
+    ssh-keyscan github.com > /root/.ssh/known_hosts
+fi
+
+if [ ! -f "/root/.ssh/jd_scripts" ]; then
+    echo "未检查到仓库密钥，复制密钥2"
+    cp /scripts/logs/.ssh/utterliar1 /root/.ssh/utterliar1
+    chmod 600 /root/.ssh/utterliar1
+fi
+
+if [ ! -f "/root/.ssh/config" ]; then
+    echo "未检查到仓库密钥配置，复制密钥配置"
+    cp /scripts/logs/.ssh/config /root/.ssh/config
+fi
+
 function monkcoder(){
     # https://github.com/monk-coder/dust
     rm -rf /monkcoder /scripts/monkcoder_*
-    git clone https://github.com/monk-coder/dust.git /monkcoder
-    for jsname in $(find /monkcoder -name "*.js" | grep -vE "\/backup\/|z_health_energy.js|z_city_cash.js|z_carnivalcity.js|z_mother_jump.js|z_xmf.js|z_health_community.js|monk_shop_follow_sku.js|monk_shop_add_to_car.js"); do cp ${jsname} /scripts/monkcoder_${jsname##*/}; done
+    git clone git@github.com:utterliar1/monkcoer.git /monkcoder
+    for jsname in $(find /monkcoder -name "*.js" | grep -vE "\/backup\/|adolf_pk.js|adolf_star.js|z_health_energy.js|z_city_cash.js|z_carnivalcity.js|z_mother_jump.js|z_xmf.js|z_health_community.js|monk_shop_follow_sku.js|monk_shop_add_to_car.js"); do cp ${jsname} /scripts/monkcoder_${jsname##*/}; done
 }
 
 function nianyuguai(){
