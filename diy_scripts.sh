@@ -24,7 +24,7 @@ function didi_fruit(){
 function utterliar(){
     # https://github.com/utterliar1/Dockerfile.git
     rm -rf /utterliar /scripts/utterliar_*
-    git clone -b mian https://github.com/utterliar1/Dockerfile.git /utterliar
+    git clone https://github.com/utterliar1/Dockerfile.git /utterliar
     for jsname in $(find /utterliar -name "*.js" | grep -vE "\/backup\/"); do cp ${jsname} /scripts/utterliar_${jsname##*/}; done
 }
 
