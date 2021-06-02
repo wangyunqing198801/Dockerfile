@@ -28,15 +28,30 @@ function utterliar(){
     for jsname in $(find /utterliar -name "*.js" | grep -vE "\/backup\/"); do cp ${jsname} /scripts/utterliar_${jsname##*/}; done
 }
 
+function panghu(){
+    # https://github.com/panghu999/panghu.git
+    rm -rf /panghu /scripts/panghu_*
+    git clone https://github.com/panghu999/panghu.git /panghu
+    for jsname in $(find /panghu -name "*.js" | grep -vE "txsp.js"); do cp ${jsname} /scripts/panghu_${jsname##*/}; done
+}
+
+function Wenmoux(){
+    # https://github.com/Wenmoux/scripts.git
+    rm -rf /Wenmoux /scripts/Wenmoux_*
+    git clone https://github.com/Wenmoux/scripts.git /Wenmoux
+    for jsname in $(find /Wenmoux -name "*.js" | grep -vE "txsp.js"); do cp ${jsname} /scripts/Wenmoux_${jsname##*/}; done
+}
+
 function diycron(){
-    # jddj didi_fruit utterliar定时任务
-    for jsname in /scripts/utterliar_*.js /scripts/jddj_*.js /scripts/didi_fruit_*.js; do
+    # jddj didi_fruit utterliar panghu Wenmoux定时任务
+    for jsname in /scripts/utterliar_*.js /scripts/jddj_*.js /scripts/didi_fruit_*.js /scripts/panghu_*.js /scripts/Wenmoux_*.js; do
         jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
         test -z "$jsnamecron" || echo "$jsnamecron node $jsname >> /scripts/logs/$(echo $jsname | cut -d/ -f3).log 2>&1" >> /scripts/docker/merged_list_file.sh
     done
     # 设置京豆雨cron
     echo "0 * * * * node /scripts/longzhuzhu_jd_super_redrain.js >> /scripts/logs/longzhuzhu_jd_super_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "30 16-23/1 * * * node /scripts/longzhuzhu_jd_half_redrain.js >> /scripts/logs/longzhuzhu_jd_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "1 20 1-18 6 * node /scripts/longzhuzhu_long_hby_lottery.js >> /scripts/logs/longzhuzhu_long_hby_lottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 
 function main(){
@@ -48,7 +63,9 @@ function main(){
     nianyuguai
     jddj
     didi_fruit
-    utterliar        
+    utterliar
+    panghu
+    Wenmoux
     b_jsnum=$(ls -l /scripts | grep -oE "^-.*js$" | wc -l)
     b_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
     # DIY任务
