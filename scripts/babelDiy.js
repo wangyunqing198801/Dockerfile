@@ -1,9 +1,10 @@
 /*
 总裁送好礼@wenmoux
+跑两次就行 日志骗人的
 没加判断 凑合用吧 或者等大佬发脚本
 抄自 @yangtingxiao 抽奖机脚本
 活动入口：
-更新地址：https://cdn.jsdelivr.net/gh/Wenmoux/scripts/js/partyTonight.js
+更新地址：https://cdn.jsdelivr.net/gh/Wenmoux/scripts/js/babelDiy.js
 已支持IOS双京东账号, Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, 小火箭，JSBox, Node.js
 ============Quantumultx===============
@@ -13,13 +14,13 @@
 
 ================Loon==============
 [Script]
-cron "0 20,21,22,23 31 5 *" script-path=https://g/jd_scripts/raw/ tag=总裁送好礼
+cron "30 9,10 * * *" script-path=https://g/jd_scripts/raw/ tag=总裁送好礼
 
 ===============Surge=================
-总裁送好礼 = type=cron,cronexp="0 20,21,22,23 31 5 *",wake-system=1,timeout=3600,script-path=https://cdn.jsdelivr.net/gh/Wenmoux/scripts/js/babelDiy.js
+总裁送好礼 = type=cron,cronexp="30 9,10 * * *",wake-system=1,timeout=3600,script-path=https://cdn.jsdelivr.net/gh/Wenmoux/scripts/js/babelDiy.js
 
 ============小火箭=========
-总裁送好礼 = type=cron,script-path=https://cdn.jsdelivr.net/gh/Wenmoux/scripts/js/babelDiy.js, cronexpr="20 8 * * *", timeout=3600, enable=true
+总裁送好礼 = type=cron,script-path=https://cdn.jsdelivr.net/gh/Wenmoux/scripts/js/babelDiy.js, cronexpr="30 9,10 * * *", timeout=3600, enable=true
 
  */
 const $ = new Env('总裁送好礼');
@@ -84,9 +85,8 @@ const JD_API_HOST = `https://api.m.jd.com/client.action`;
             for (let k = 0; k < cookiesArr.length; k++) {
                 let pin = cookiesArr[k].match(/pt_pin=(.+?);/)[1]
                 console.log("为"+pin+"助力中")
-                let code = await help(pin)
-                
-                if (code != 0) {
+                let code = await help(pin)                
+                if (code ===207 || code ===400) {
                     console.log("助力次数已满/账号火爆")
                     k= 9999
                 }
@@ -215,7 +215,7 @@ function dotask(type, id) {
                 } else {
                     data = JSON.parse(data);
                     if (data && data.code === 0) {
-                        console.log(`任务已完成,获得330总裁力\n`);
+                        console.log(`任务完成`);
                     }
 
                 }
