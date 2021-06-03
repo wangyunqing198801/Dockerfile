@@ -14,19 +14,21 @@ function jddj(){
     for jsname in $(ls /jddj | grep -oE ".*\js$"); do cp -rf /jddj/$jsname /scripts/$jsname; done
 }
 
-#function didi_fruit(){
+function didi_fruit(){
     # https://github.com/passerby-b/didi_fruit.git
     rm -rf /didi_fruit /scripts/didi_fruit_*
     git clone -b main https://github.com/passerby-b/didi_fruit.git /didi_fruit
     for jsname in $(ls /didi_fruit | grep -oE ".*\js$"); do cp -rf /didi_fruit/$jsname /scripts/didi_fruit_$jsname; done
 }
 
+:<<!
 function dd(){
     # https://github.com/passerby-b/didi_fruit.git
     rm -rf /dd /scripts/dd_*
     git clone -b main https://github.com/passerby-b/didi_fruit.git /dd
     for jsname in $(ls /dd | grep -oE ".*\js$"); do cp -rf /dd/$jsname /scripts/$jsname; done
 }
+!
 
 function utterliar(){
     # https://github.com/utterliar1/Dockerfile.git
