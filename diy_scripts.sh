@@ -68,8 +68,8 @@ function diycron(){
     # https://github.com/zooPanda/zoo.git
     echo "15 13 1-18 6 * node /scripts/zooLongzhou.js |ts >> /scripts/logs/zooLongzhou.log 2>&1" >> /scripts/docker/merged_list_file.sh
     # https://github.com/yangtingxiao/QuantumultX.git   
-    wget --no-check-certificate -O /scripts/jd_starStore.js https://github.com/yangtingxiao/QuantumultX/raw/master/scripts/jd/jd_starStore.js
-    echo "5 9 * * * node /scripts/jd_starStore.js |ts >> /scripts/logs/jd_starStore.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    #wget --no-check-certificate -O /scripts/jd_starStore.js https://github.com/yangtingxiao/QuantumultX/raw/master/scripts/jd/jd_starStore.js
+    #echo "5 9 * * * node /scripts/jd_starStore.js |ts >> /scripts/logs/jd_starStore.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 
 function main(){
