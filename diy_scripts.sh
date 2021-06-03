@@ -62,7 +62,7 @@ function zoo(){
 
 function diycron(){
     # jddj dd utterliar panghu Wenmoux定时任务
-    for jsname in /scripts/utterliar_*.js /scripts/jddj_*.js /scripts/dd_*.js /scripts/panghu_*.js /scripts/Wenmoux_*.js /scripts/zoo*.js; do
+    for jsname in /scripts/utterliar_*.js /scripts/jddj_*.js /scripts/dd_*.js /scripts/panghu_*.js /scripts/Wenmoux_*.js; do
         jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
         test -z "$jsnamecron" || echo "$jsnamecron node $jsname >> /scripts/logs/$(echo $jsname | cut -d/ -f3).log 2>&1" >> /scripts/docker/merged_list_file.sh
     done
@@ -94,7 +94,6 @@ function main(){
     utterliar
     panghu
     Wenmoux
-    zoo
     b_jsnum=$(ls -l /scripts | grep -oE "^-.*js$" | wc -l)
     b_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
     # DIY任务
