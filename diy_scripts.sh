@@ -43,7 +43,7 @@ function panghu(){
     # https://github.com/panghu999/panghu.git
     rm -rf /panghu /scripts/panghu_*
     git clone https://github.com/panghu999/panghu.git /panghu
-    for jsname in $(find /panghu -name "*.js" | grep -vE "txsp.js"); do cp ${jsname} /scripts/panghu_${jsname##*/}; done
+    for jsname in $(find /panghu -name "*.js" | grep -vE "txsp.js|jdCookie.js|sendNotify.js"); do cp ${jsname} /scripts/panghu_${jsname##*/}; done
 }
 
 function Wenmoux(){
