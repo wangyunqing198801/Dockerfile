@@ -14,11 +14,18 @@ function jddj(){
     for jsname in $(ls /jddj | grep -oE ".*\js$"); do cp -rf /jddj/$jsname /scripts/$jsname; done
 }
 
-function didi_fruit(){
+#function didi_fruit(){
     # https://github.com/passerby-b/didi_fruit.git
     rm -rf /didi_fruit /scripts/didi_fruit_*
     git clone -b main https://github.com/passerby-b/didi_fruit.git /didi_fruit
     for jsname in $(ls /didi_fruit | grep -oE ".*\js$"); do cp -rf /didi_fruit/$jsname /scripts/didi_fruit_$jsname; done
+}
+
+function dd(){
+    # https://github.com/passerby-b/didi_fruit.git
+    rm -rf /dd /scripts/dd_*
+    git clone -b main https://github.com/passerby-b/didi_fruit.git /dd
+    for jsname in $(ls /dd | grep -oE ".*\js$"); do cp -rf /dd/$jsname /scripts/$jsname; done
 }
 
 function utterliar(){
@@ -39,12 +46,12 @@ function Wenmoux(){
     # https://github.com/Wenmoux/scripts.git
     rm -rf /Wenmoux /scripts/Wenmoux_*
     git clone https://github.com/Wenmoux/scripts.git /Wenmoux
-    for jsname in $(find /Wenmoux -name "*.js" | grep -vE "txsp.js"); do cp ${jsname} /scripts/Wenmoux_${jsname##*/}; done
+    for jsname in $(find /Wenmoux -name "*.js" | grep -vE "jddj_help.js"); do cp ${jsname} /scripts/Wenmoux_${jsname##*/}; done
 }
 
 function diycron(){
-    # jddj didi_fruit utterliar panghu Wenmoux定时任务
-    for jsname in /scripts/utterliar_*.js /scripts/jddj_*.js /scripts/didi_fruit_*.js /scripts/panghu_*.js /scripts/Wenmoux_*.js; do
+    # jddj dd utterliar panghu Wenmoux定时任务
+    for jsname in /scripts/utterliar_*.js /scripts/jddj_*.js /scripts/dd_*.js /scripts/panghu_*.js /scripts/Wenmoux_*.js; do
         jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
         test -z "$jsnamecron" || echo "$jsnamecron node $jsname >> /scripts/logs/$(echo $jsname | cut -d/ -f3).log 2>&1" >> /scripts/docker/merged_list_file.sh
     done
@@ -62,7 +69,7 @@ function main(){
     a_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
     nianyuguai
     jddj
-    didi_fruit
+    dd
     utterliar
     panghu
     Wenmoux
