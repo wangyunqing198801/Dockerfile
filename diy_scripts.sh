@@ -57,7 +57,7 @@ function zoo(){
     # https://github.com/zooPanda/zoo.git
     rm -rf /zoo /scripts/zoo*
     git clone https://github.com/zooPanda/zoo.git /zoo
-    for jsname in $(find /zoo -name "*.js"); do cp ${jsname} /scripts/zoo${jsname##*/}; done
+    for jsname in $(find /zoo -name "*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
 }
 
 function diycron(){
