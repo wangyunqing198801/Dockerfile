@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+:<<!
 function nianyuguai(){
     # https://github.com/nianyuguai/longzhuzhu.git
     rm -rf /longzhuzhu /scripts/longzhuzhu_*
     git clone -b main https://github.com/nianyuguai/longzhuzhu.git /longzhuzhu
     for jsname in $(ls /longzhuzhu/qx | grep -oE ".*\js$"); do cp -rf /longzhuzhu/qx/$jsname /scripts/longzhuzhu_$jsname; done
 }
+!
 
 function jddj(){
     # https://github.com/passerby-b/JDDJ.git
@@ -14,21 +16,21 @@ function jddj(){
     for jsname in $(ls /jddj | grep -oE ".*\js$"); do cp -rf /jddj/$jsname /scripts/$jsname; done
 }
 
+:<<!
 function didi_fruit(){
     # https://github.com/passerby-b/didi_fruit.git
     rm -rf /didi_fruit /scripts/didi_fruit_*
     git clone -b main https://github.com/passerby-b/didi_fruit.git /didi_fruit
     for jsname in $(ls /didi_fruit | grep -oE ".*\js$"); do cp -rf /didi_fruit/$jsname /scripts/didi_fruit_$jsname; done
 }
+!
 
-:<<!
 function dd(){
     # https://github.com/passerby-b/didi_fruit.git
     rm -rf /dd /scripts/dd_*
     git clone -b main https://github.com/passerby-b/didi_fruit.git /dd
     for jsname in $(ls /dd | grep -oE ".*\js$"); do cp -rf /dd/$jsname /scripts/$jsname; done
 }
-!
 
 function utterliar(){
     # https://github.com/utterliar1/Dockerfile.git
@@ -58,9 +60,9 @@ function diycron(){
         test -z "$jsnamecron" || echo "$jsnamecron node $jsname >> /scripts/logs/$(echo $jsname | cut -d/ -f3).log 2>&1" >> /scripts/docker/merged_list_file.sh
     done
     # 设置京豆雨cron
-    echo "0 * * * * node /scripts/longzhuzhu_jd_super_redrain.js >> /scripts/logs/longzhuzhu_jd_super_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "30 16-23/1 * * * node /scripts/longzhuzhu_jd_half_redrain.js >> /scripts/logs/longzhuzhu_jd_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "1 20 1-18 6 * node /scripts/longzhuzhu_long_hby_lottery.js >> /scripts/logs/longzhuzhu_long_hby_lottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    #echo "0 * * * * node /scripts/longzhuzhu_jd_super_redrain.js >> /scripts/logs/longzhuzhu_jd_super_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    #echo "30 16-23/1 * * * node /scripts/longzhuzhu_jd_half_redrain.js >> /scripts/logs/longzhuzhu_jd_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    #echo "1 20 1-18 6 * node /scripts/longzhuzhu_long_hby_lottery.js >> /scripts/logs/longzhuzhu_long_hby_lottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 
 function main(){
@@ -69,7 +71,7 @@ function main(){
     # DIY脚本
     a_jsnum=$(ls -l /scripts | grep -oE "^-.*js$" | wc -l)
     a_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
-    nianyuguai
+    #nianyuguai
     jddj
     dd
     utterliar
