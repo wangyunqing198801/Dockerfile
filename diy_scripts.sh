@@ -53,23 +53,32 @@ function Wenmoux(){
     for jsname in $(find /Wenmoux -name "*.js" | grep -vE "jddj_help.js"); do cp ${jsname} /scripts/Wenmoux_${jsname##*/}; done
 }
 
+function zoo(){
+    # https://github.com/zooPanda/zoo.git
+    rm -rf /zoo /scripts/zoo*
+    git clone https://github.com/zooPanda/zoo.git /zoo
+    for jsname in $(find /zoo -name "*.js"); do cp ${jsname} /scripts/zoo${jsname##*/}; done
+}
+
 function diycron(){
     # jddj dd utterliar panghu Wenmoux定时任务
-    for jsname in /scripts/utterliar_*.js /scripts/jddj_*.js /scripts/dd_*.js /scripts/panghu_*.js /scripts/Wenmoux_*.js; do
+    for jsname in /scripts/utterliar_*.js /scripts/jddj_*.js /scripts/dd_*.js /scripts/panghu_*.js /scripts/Wenmoux_*.js /scripts/zoo*.js; do
         jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
         test -z "$jsnamecron" || echo "$jsnamecron node $jsname >> /scripts/logs/$(echo $jsname | cut -d/ -f3).log 2>&1" >> /scripts/docker/merged_list_file.sh
     done
+:<<!
     # 设置京豆雨cron
-    #echo "0 * * * * node /scripts/longzhuzhu_jd_super_redrain.js >> /scripts/logs/longzhuzhu_jd_super_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    #echo "30 16-23/1 * * * node /scripts/longzhuzhu_jd_half_redrain.js >> /scripts/logs/longzhuzhu_jd_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    #echo "1 20 1-18 6 * node /scripts/longzhuzhu_long_hby_lottery.js >> /scripts/logs/longzhuzhu_long_hby_lottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    wget --no-check-certificate -O /scripts/zooLongzhou.js https://github.com/zooPanda/zoo/blob/dev/zooLongzhou.js
+    echo "0 * * * * node /scripts/longzhuzhu_jd_super_redrain.js >> /scripts/logs/longzhuzhu_jd_super_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "30 16-23/1 * * * node /scripts/longzhuzhu_jd_half_redrain.js >> /scripts/logs/longzhuzhu_jd_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "1 20 1-18 6 * node /scripts/longzhuzhu_long_hby_lottery.js >> /scripts/logs/longzhuzhu_long_hby_lottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
     # 浓情618 与“粽”不同
     # https://github.com/zooPanda/zoo.git
+    wget --no-check-certificate -O /scripts/zooLongzhou.js https://github.com/zooPanda/zoo/blob/dev/zooLongzhou.js
     echo "15 13 1-18 6 * node /scripts/zooLongzhou.js |ts >> /scripts/logs/zooLongzhou.log 2>&1" >> /scripts/docker/merged_list_file.sh
     # https://github.com/yangtingxiao/QuantumultX.git   
-    #wget --no-check-certificate -O /scripts/jd_starStore.js https://github.com/yangtingxiao/QuantumultX/raw/master/scripts/jd/jd_starStore.js
-    #echo "5 9 * * * node /scripts/jd_starStore.js |ts >> /scripts/logs/jd_starStore.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    wget --no-check-certificate -O /scripts/jd_starStore.js https://github.com/yangtingxiao/QuantumultX/raw/master/scripts/jd/jd_starStore.js
+    echo "5 9 * * * node /scripts/jd_starStore.js |ts >> /scripts/logs/jd_starStore.log 2>&1" >> /scripts/docker/merged_list_file.sh
+!
 }
 
 function main(){
@@ -84,6 +93,7 @@ function main(){
     utterliar
     panghu
     Wenmoux
+    zoo
     b_jsnum=$(ls -l /scripts | grep -oE "^-.*js$" | wc -l)
     b_jsname=$(ls -l /scripts | grep -oE "^-.*js$" | grep -oE "[^ ]*js$")
     # DIY任务
