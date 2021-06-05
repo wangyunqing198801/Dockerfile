@@ -1,29 +1,11 @@
 #!/usr/bin/env bash
 
-:<<!
-function nianyuguai(){
-    # https://github.com/nianyuguai/longzhuzhu.git
-    rm -rf /longzhuzhu /scripts/longzhuzhu_*
-    git clone -b main https://github.com/nianyuguai/longzhuzhu.git /longzhuzhu
-    for jsname in $(ls /longzhuzhu/qx | grep -oE ".*\js$"); do cp -rf /longzhuzhu/qx/$jsname /scripts/longzhuzhu_$jsname; done
-}
-!
-
 function jddj(){
     # https://github.com/passerby-b/JDDJ.git
     rm -rf /jddj /scripts/jddj_*
     git clone -b main https://github.com/passerby-b/JDDJ.git /jddj
     for jsname in $(ls /jddj | grep -oE ".*\js$"); do cp -rf /jddj/$jsname /scripts/$jsname; done
 }
-
-:<<!
-function didi_fruit(){
-    # https://github.com/passerby-b/didi_fruit.git
-    rm -rf /didi_fruit /scripts/didi_fruit_*
-    git clone -b main https://github.com/passerby-b/didi_fruit.git /didi_fruit
-    for jsname in $(ls /didi_fruit | grep -oE ".*\js$"); do cp -rf /didi_fruit/$jsname /scripts/didi_fruit_$jsname; done
-}
-!
 
 function dd(){
     # https://github.com/passerby-b/didi_fruit.git
@@ -66,19 +48,6 @@ function diycron(){
         jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
         test -z "$jsnamecron" || echo "$jsnamecron node $jsname >> /scripts/logs/$(echo $jsname | cut -d/ -f3).log 2>&1" >> /scripts/docker/merged_list_file.sh
     done
-:<<!
-    # 设置京豆雨cron
-    echo "0 * * * * node /scripts/longzhuzhu_jd_super_redrain.js >> /scripts/logs/longzhuzhu_jd_super_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "30 16-23/1 * * * node /scripts/longzhuzhu_jd_half_redrain.js >> /scripts/logs/longzhuzhu_jd_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "1 20 1-18 6 * node /scripts/longzhuzhu_long_hby_lottery.js >> /scripts/logs/longzhuzhu_long_hby_lottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    # 浓情618 与“粽”不同
-    # https://github.com/zooPanda/zoo.git
-    wget --no-check-certificate -O /scripts/zooLongzhou.js https://github.com/zooPanda/zoo/blob/dev/zooLongzhou.js
-    echo "15 13 1-18 6 * node /scripts/zooLongzhou.js |ts >> /scripts/logs/zooLongzhou.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    # https://github.com/yangtingxiao/QuantumultX.git   
-    wget --no-check-certificate -O /scripts/jd_starStore.js https://github.com/yangtingxiao/QuantumultX/raw/master/scripts/jd/jd_starStore.js
-    echo "5 9 * * * node /scripts/jd_starStore.js |ts >> /scripts/logs/jd_starStore.log 2>&1" >> /scripts/docker/merged_list_file.sh
-!
     echo "15 13 1-18 6 * node /scripts/panda_zooLongzhou.js |ts >> /scripts/logs/zooLongzhou.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "18 9 1-18 6 * node /scripts/panda_zooBaojiexiaoxiaole.js |ts >> /scripts/logs/zooBaojiexiaoxiaole.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
