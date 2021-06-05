@@ -79,8 +79,8 @@ function diycron(){
     wget --no-check-certificate -O /scripts/jd_starStore.js https://github.com/yangtingxiao/QuantumultX/raw/master/scripts/jd/jd_starStore.js
     echo "5 9 * * * node /scripts/jd_starStore.js |ts >> /scripts/logs/jd_starStore.log 2>&1" >> /scripts/docker/merged_list_file.sh
 !
-    echo "15 13 1-18 6 * node /scripts/zooLongzhou.js |ts >> /scripts/logs/zooLongzhou.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "18 9 1-18 6 * node /scripts/zooBaojiexiaoxiaole.js |ts >> /scripts/logs/zooBaojiexiaoxiaole.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "15 13 1-18 6 * node /scripts/zoo_zooLongzhou.js |ts >> /scripts/logs/zooLongzhou.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "18 9 1-18 6 * node /scripts/zoo_zooBaojiexiaoxiaole.js |ts >> /scripts/logs/zooBaojiexiaoxiaole.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 
 function main(){
