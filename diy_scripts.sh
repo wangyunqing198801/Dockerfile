@@ -35,20 +35,15 @@ function Wenmoux(){
     for jsname in $(find /Wenmoux -name "*.js" | grep -vE "jddj_help.js"); do cp ${jsname} /scripts/Wenmoux_${jsname##*/}; done
 }
 
-function panda(){
-    # https://github.com/zooPanda/zoo.git
-    rm -rf /panda /scripts/panda_*
-    git clone https://github.com/zooPanda/zoo.git /panda
-    for jsname in $(find /panda -name "*.js" | grep -vE "member"); do cp ${jsname} /scripts/panda_${jsname##*/}; done
-}
-
 function diycron(){
     # jddj dd utterliar panghu Wenmoux定时任务
     for jsname in /scripts/utterliar_*.js /scripts/jddj_*.js /scripts/dd_*.js /scripts/panghu_*.js /scripts/Wenmoux_*.js; do
         jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
         test -z "$jsnamecron" || echo "$jsnamecron node $jsname >> /scripts/logs/$(echo $jsname | cut -d/ -f3).log 2>&1" >> /scripts/docker/merged_list_file.sh
     done
+    wget --no-check-certificate -O /scripts/zooLongzhou.js https://github.com/zooPanda/zoo/blob/dev/zooLongzhou.js
     echo "15 13 1-18 6 * node /scripts/panda_zooLongzhou.js |ts >> /scripts/logs/zooLongzhou.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    wget --no-check-certificate -O /scripts/zooLongzhou.js https://github.com/zooPanda/zoo/blob/dev/zooBaojiexiaoxiaole.js
     echo "18 9 1-18 6 * node /scripts/panda_zooBaojiexiaoxiaole.js |ts >> /scripts/logs/zooBaojiexiaoxiaole.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 
