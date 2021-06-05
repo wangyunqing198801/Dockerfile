@@ -56,7 +56,7 @@ function Wenmoux(){
 function panda(){
     # https://github.com/zooPanda/zoo.git
     rm -rf /panda /scripts/panda_*
-    git clone -b dev https://github.com/zooPanda/zoo.git /panda
+    git clone https://github.com/zooPanda/zoo.git /panda
     for jsname in $(find /panda -name "*.js" | grep -vE "member"); do cp ${jsname} /scripts/panda_${jsname##*/}; done
 }
 
