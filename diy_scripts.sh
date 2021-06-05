@@ -53,11 +53,11 @@ function Wenmoux(){
     for jsname in $(find /Wenmoux -name "*.js" | grep -vE "jddj_help.js"); do cp ${jsname} /scripts/Wenmoux_${jsname##*/}; done
 }
 
-function zoo(){
+function panda(){
     # https://github.com/zooPanda/zoo.git
-    rm -rf /zoo /scripts/zoo_*
-    git clone -b dev https://github.com/zooPanda/zoo.git /zoo
-    for jsname in $(find /zoo -name "*.js" | grep -vE "jddj_help.js"); do cp ${jsname} /scripts/zoo_${jsname##*/}; done
+    rm -rf /panda /scripts/panda_*
+    git clone -b dev https://github.com/zooPanda/zoo.git /panda
+    for jsname in $(find /panda -name "*.js" | grep -vE "member"); do cp ${jsname} /scripts/panda_${jsname##*/}; done
 }
 
 function diycron(){
@@ -79,8 +79,8 @@ function diycron(){
     wget --no-check-certificate -O /scripts/jd_starStore.js https://github.com/yangtingxiao/QuantumultX/raw/master/scripts/jd/jd_starStore.js
     echo "5 9 * * * node /scripts/jd_starStore.js |ts >> /scripts/logs/jd_starStore.log 2>&1" >> /scripts/docker/merged_list_file.sh
 !
-    echo "15 13 1-18 6 * node /scripts/zoo_zooLongzhou.js |ts >> /scripts/logs/zooLongzhou.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "18 9 1-18 6 * node /scripts/zoo_zooBaojiexiaoxiaole.js |ts >> /scripts/logs/zooBaojiexiaoxiaole.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "15 13 1-18 6 * node /scripts/panda_zooLongzhou.js |ts >> /scripts/logs/zooLongzhou.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "18 9 1-18 6 * node /scripts/panda_zooBaojiexiaoxiaole.js |ts >> /scripts/logs/zooBaojiexiaoxiaole.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 
 function main(){
