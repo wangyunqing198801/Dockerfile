@@ -56,8 +56,8 @@ function Wenmoux(){
 function zoo(){
     # https://github.com/zooPanda/zoo.git
     rm -rf /zoo /scripts/zoo*
-    git clone https://github.com/zooPanda/zoo.git /zoo
-    for jsname in $(find /zoo -name "*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
+    git clone -b main https://github.com/zooPanda/zoo.git /zoo
+    for jsname in $(ls /zoo | grep -oE ".*\js$"); do cp -rf /zoo/$jsname /scripts/$jsname; done
 }
 
 function diycron(){
