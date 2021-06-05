@@ -41,9 +41,9 @@ function diycron(){
         jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
         test -z "$jsnamecron" || echo "$jsnamecron node $jsname >> /scripts/logs/$(echo $jsname | cut -d/ -f3).log 2>&1" >> /scripts/docker/merged_list_file.sh
     done
-    wget --no-check-certificate -O /scripts/zooLongzhou.js https://github.com/zooPanda/zoo/blob/dev/zooLongzhou.js
+    wget --no-check-certificate -O /scripts/zooLongzhou.js https://raw.githubusercontent.com/zooPanda/zoo/dev/zooLongzhou.js
     echo "15 13 1-18 6 * node /scripts/zooLongzhou.js |ts >> /scripts/logs/zooLongzhou.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    wget --no-check-certificate -O /scripts/zooBaojiexiaoxiaole.js https://github.com/zooPanda/zoo/blob/dev/zooBaojiexiaoxiaole.js
+    wget --no-check-certificate -O /scripts/zooBaojiexiaoxiaole.js https://raw.githubusercontent.com/zooPanda/zoo/dev/zooBaojiexiaoxiaole.js
     echo "18 9 1-18 6 * node /scripts/zooBaojiexiaoxiaole.js |ts >> /scripts/logs/zooBaojiexiaoxiaole.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 
